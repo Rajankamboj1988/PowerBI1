@@ -1,8 +1,8 @@
 // This file contains your Data Connector logic
 section DropBox;
 
-appKey="fianhvd3kknjeke";
-appSecret="9fckd26kf1myv0u";
+appKey="8xzz42r0oktukmk";
+appSecret="qd6hiyi0e7bv56c";
 redirectUrl = "https://preview.powerbi.com/views/oauthredirect.html";
 
 windowWidth = 720;
@@ -13,7 +13,7 @@ windowHeight = 1024;
 shared DropBox.Contents = (path as text) =>
     let
        key = Extension.CurrentCredential()[access_token],
-       content = Web.Contents("https://api.dropboxapi.com/2/files/list_folder",[
+       content = Web.Contents("https://www.dropbox.com/developers/apps/info/8xzz42r0oktukmk",[
             Content = Json.FromValue([
                     path = path,
                     recursive=false,
@@ -30,7 +30,7 @@ shared DropBox.Contents = (path as text) =>
 shared DropBox.File = (path as text) => 
     let
        key = Extension.CurrentCredential()[access_token],
-       content = Web.Contents("https://content.dropboxapi.com/2/files/download",[
+       content = Web.Contents("https://content.dropboxapi.com/developers/apps/info/8xzz42r0oktukmk",[
             Headers=[#"Dropbox-API-Arg"=Text.FromBinary(Json.FromValue([path=path])),
                     #"Authorization" = "Bearer " & key]]),
         json=content
